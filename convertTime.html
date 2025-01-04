@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Converter</title>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+       .convert,.container,.msg,.amount {text-align: center;
+        
+        background-color: #fff;
+            padding: 20px;
+            border-radius: 8px rgba(0,0,0);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;}
+            .convert {
+        width: 500px; /* Narrower width */
+        height: 60px; /* Taller height */
+        font-size: 16px;
+        background-color: #4CAF50;
+        margin: 0% ;
+        padding: 0% ;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .convert:hover {
+        background-color: #45a049;
+      }
+
+      /* Responsive button adjustment */
+      @media (max-width: 600px){
+        .convert {
+          width: 120px;
+          height: 50px;
+        }}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Epoch Converter</h2>
+      <form>
+        <div class="amount">
+          
+          <input id="amount" value="1" type="text" placeholder="Enter time in milliseconds" />
+        </div>
+        <button  class="convert" id="convert" type="button">Convert</button>
+        <div class="msg" id="msg"></div>
+      </form>
+    </div>
+
+    <script>
+      // Event listener for convert button
+      document.getElementById('convert').addEventListener('click', function () {
+        // Get the value from the input field and parse it as a float
+        const amount = parseFloat(document.getElementById('amount').value);
+
+        // Function to convert epoch time (in milliseconds) to a readable date
+        function epochToDate(milliseconds) {
+          const date = new Date(milliseconds);
+          const formattedDate = date.toUTCString(); // Convert to a UTC string format
+          return formattedDate;
+        }
+
+        // Convert the entered amount to date and display it
+        const convertedAmount = epochToDate(amount);
+        const resultContainer = document.getElementById('msg');
+        resultContainer.textContent =` Converted Date: ${convertedAmount}`;
+      });
+    </script>
+  </body>
+</html>
